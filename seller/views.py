@@ -10,4 +10,4 @@ def car_data(request):
         form= forms.seller_form()
         return render(request, "seller/seller_data.html", {'form': form})
 def login(request):
-    return render(request, "login.html")
+    return render(request, "user/login.html")
