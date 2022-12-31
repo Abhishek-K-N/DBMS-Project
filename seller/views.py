@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(redirect_field_name='login')
+@login_required(login_url='login')
 def car_data(request):
     global isLogin
     if request.method == 'POST':
