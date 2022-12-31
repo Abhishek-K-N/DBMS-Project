@@ -9,9 +9,13 @@
 <body>
     <h1>HOME</h1>
     <button><a href=""></a>BUY</button>
-    <button><a href="{% url 'seller/cardata'%}"></a>SELL</button>
-    <button><a href=""></a>SIGNUP</button>
-    <button><a href=""></a>LOGIN</button>
-    <button><a href=""></a>LOGOUT</button>
+    {% if user.is_authenticated %}
+    <span>Hello {{user.username}}</span>
+    <a href="{% url 'logout' %}"><button>LOGOUT</button></a>
+    {% else %}
+    <a href="{% url 'register'%}"><button>SIGNUP</button></a>
+    <a href="{% url 'login'%}"><button>LOGIN</button></a>
+    {% endif %}
+    <a href="{% url 'cardata' %}"><button>SELL</button></a>
 </body>
 </html>

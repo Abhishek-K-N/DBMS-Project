@@ -10,4 +10,4 @@ class register(forms.Form):
     email=forms.EmailField(label="Email", required=True)
     username=forms.CharField(label="Username", required=True)
     password=forms.CharField(label="Password", widget=forms.PasswordInput())
-    confirm_password=forms.CharField(label="Confirm Password", widget=forms.PasswordInput())
+    password1=forms.CharField(label="Confirm Password", widget=forms.PasswordInput())

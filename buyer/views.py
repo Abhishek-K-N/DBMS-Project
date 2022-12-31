@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from seller.models import Car
+
 
 # Create your views here.
-def login(request):
-    return render(request, "login.html")
+def buy(request):
+    Cars=Car.objects.all()
+    return render(request, "buyer/buy.html", {'Cars': Cars})

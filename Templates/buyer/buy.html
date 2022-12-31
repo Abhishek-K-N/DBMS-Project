@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+</head>
+<body>
+    <h1>Cars on sale</h1>
+    {%if Cars%}
+    {% for car in Cars%}
+    <h3>{{car.carCompany}}</h3>
+    <h3>{{car.carName}}</h3>
+    <h3>{{car.manu_Date}}</h3>
+    <h3>{{car.kilometers}}</h3>
+    <h3>{{car.Fuel_type}}</h3>
+    <h3>{{car.color}}</h3>
+    <h3>{{car.first_owner}}</h3>
+    <h3>{{car.car_insurance}}</h3>
+    <h3>{{car.insurance_type}}</h3>
+    <h3>{{car.car_registration}}</h3>
+    <h3>../..{{car.images.url}}</h3>
+    <img src="../../Images/Testimonials.png" alt="image">
+    <a href=""><button>Bid</button></a>
+    {%endfor%}
+    {%else%}
+    <h1>No cars</h1>
+    {%endif%}
+</body>
+</html>

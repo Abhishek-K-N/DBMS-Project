@@ -7,7 +7,7 @@
     <title>Form</title>
 </head>
 <body>
-    <form action="url 'seller/ cardata'" method="post">
+    <form action="{%url 'cardata'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         {{form.as_p}}
         <!-- <label for="car_company">Car Company</label>
