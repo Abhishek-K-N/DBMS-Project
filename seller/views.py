@@ -1,6 +1,10 @@
+from collections import UserList
 from django.shortcuts import render, redirect
 from .forms import seller_form
+from .models import Car
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from user.models import UserProfile
 
 
 # Create your views here.
@@ -8,27 +12,26 @@ from django.contrib.auth.decorators import login_required
 def car_data(request):
     global isLogin
     if request.method == 'POST':
-        print(request.FILES["images"])
-        form=seller_form(request.POST, request.FILES)
-        print(request.FILES['images'])
-        if form.is_valid():
-            # car.CarCompany=request.POST["carCompany"]
-            # car.carName=request.POST["carName"]
-            # car.manu_Date=request.POST["manu_Date"]
-            # car.kilometers=request.POST["kilometers"]
-            # car.Fuel_type=request.POST["Fuel_type"]
-            # car.color=request.POST["color"]
-            # car.first_owner=request.POST["first_owner"]
-            # car.expected_price=request.POST["expected_price"]
-            # car.car_insurance=request.POST["car_insurance"]
-            # car.insurance_type=request.POST["insurance_type"]
-            # car.car_registration_no=request.POST["car_registration_no"]
-            # car.images=request.FILES["images"] 
-            form.save()
-            print("The form data is stored")
-            return redirect("/")
-        else:
-            return render(request, "seller/seller_data.html", {'form': form})
+        carCompany=request.POST['carCompany']
+        carName=request.POST['carName']
+        manu_Date=request.POST['manu_Date']
+        kilometers=request.POST['kilometers']
+        Fuel_type=request.POST['Fuel_type']
+        color=request.POST['color']
+        expected_price=request.POST['expected_price']
+        insurance_type=request.POST['insurance_type']
+        car_registration_no=request.POST['car_registration_no']
+        images=request.FILES['images']
+        car_data=Car(carCompany=carCompany, carName=carName, manu_Date=manu_Date, kilometers=kilometers, 
+        Fuel_type=Fuel_type, color=color, expected_price=expected_price, insurance_type=insurance_type, car_registration_no=car_registration_no, images=images)
+        print(car_data)
+        car_data.save()
+        user=User.objects.get(username=request.user)
+        profile=UserProfile.objects.get(user_info=user)
+        profile.selled_car=car_data
+        profile.save()
+        print("The form data is stored")
+        return redirect("/")
     else:
         form= seller_form()
         return render(request, "seller/seller_data.html", {'form': form})
